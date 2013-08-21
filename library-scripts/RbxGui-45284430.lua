@@ -1,4 +1,6 @@
-%ZATP3U1NPysMmGh24+1WOcBnIQ7oOeKIyiQOtbFB5uKOznuSXCb2FfLdYxGmffPAXp3H/ylMFQgD+ssRVA7H4DeHAZ/whk0j1UJKMXPHDXlYrWcSlABqUWRdfHnLPI+BbuF2EozCnRk7wxMvoiMsbjnw4uCwOlEEiz15GRqBOr0=%%45284430%local t = {}
+--rbxsig%SBR8b9ImAI3LR9JrLVNLm4f6wRT9xLKuCeYVCyPEjaIlwoWxK6Egh1qeXye9+ftA0suMfkDDarZIBFTI7L0BSBJ45/YEfyEI1kkPtMSIRD+fFpaqMsLQFI0J+ikdHVAxgF1jCZxCElyMQ1z2mmcyqls1vGRAPJ4BATa0QM7fykw=%
+--rbxassetid%45284430%
+local t = {}
 
 local function ScopedConnect(parentInstance, instance, event, signalFunc, syncFunc, removeFunc)
 	local eventConnection = nil
