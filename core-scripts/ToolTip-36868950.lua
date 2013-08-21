@@ -1,4 +1,6 @@
-%aEd5I02gmb9KS8u1wtR5K7/lt1ImFEHpF0PRBe9z36z3m92XezRec0TkyA4++N/1/OvG+dZ37whHnUUVcGUTT3BK8KQXcd8FeZbO0dQ/xRT914KyCHQq5UjRH+GDk8GMlDkjBn3zwGf9m+TD/iSx97S0/iUdhAI/zPNvtzQe+4Q=%%36868950%local controlFrame = script.Parent:FindFirstChild("ControlFrame")
+--rbxsig%C0I/feQrxMuzsOlRPS4PSTv+walOUUdvOknw8Clktnv9+lykFRUHVhc5WDj7wKxRIvcz+GCn7aNHR1cUXYhqPX8etmckXL33B3UPfonNHESKCQvUmE0NobCTGPRFkQYn5uJ64zBmH4lExaoMhW65vPVthVLnEdkCcbJpZrsCDM4=%
+--rbxassetid%36868950%
+local controlFrame = script.Parent:FindFirstChild("ControlFrame")
 
 if not controlFrame then return end
 
