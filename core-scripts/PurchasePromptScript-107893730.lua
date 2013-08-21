@@ -1,4 +1,6 @@
-%YNf/oaL5VIEoFZHJv4or8oc/bZYgZHCZySDJNlUvdB9aUFlyw4CYfNFTidRyNNYmf9jwQlafC+xfv9P1IFkQzecuUWe/tV2Okqo39SGki0d9kJw3ICrUt0rKepV6LKUa4fyY689AOnchLlWcWQoervdn6ekuTVDF3ZOAYt/NbbI=%%107893730%-- this script creates the gui and sends the web requests for in game purchase prompts
+--rbxsig%QA/VjfV8m69X63GwCv+XMwdKg6NJwhU514UZz0hYdZxHQ1yBdGWFprONGaXI2aUA++xiUcIGcan653+TnEwfosN7p6u+6udFv6qxU9vG43ETR9rP2hHqrMSvxvENZhM3lMKgTgswPIkzUzKcOPmqEyAuzryUCASn529nDBcayjg=%
+--rbxassetid%107893730%
+-- this script creates the gui and sends the web requests for in game purchase prompts
 
 -- wait for important items to appear
 while not game do
