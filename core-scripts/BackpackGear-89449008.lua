@@ -1,4 +1,6 @@
-%Iu8D0q2UT7X9b2rx9DteJGWGLeBwwfIXppbSKdhUvTY+6DqJrRE41Ku5P6/nelEX1Ui4EddZ+4YyOgEGrOsogG6ixc3HChqzydbj+oVdDMBptoCHbYjEvZua+MULjrKuo29iiyvl/2ykFQa3tIZnn9NN3GdHR+z9AH/6vbhP93c=%%89449008%-- A couple of necessary functions
+--rbxsig%mvW8V0yasZXYRTmBj4iW7Hd5xjL+7X7yvuOn2ce2VQOLIxIY1BztNvWiOHHuv8gqNr1yRX7dEDH3e5AhjoBMyC6nmjN8MbnUYYL0uOxISEB/i2jb+7S1jni8+eHYPXqD/MqQ5WFMw+/vvPLET29nKotwg40b3iX7GU6ChqfIRjk=%
+--rbxassetid%89449008%
+-- A couple of necessary functions
 local function waitForChild(instance, name)
 	assert(instance)
 	assert(name)

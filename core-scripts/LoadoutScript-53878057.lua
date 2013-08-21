@@ -1,4 +1,6 @@
-%H13RuPd5s08TdrwNnKAWjiotsVvqsl+Md8cAbJoX6nilixNTceIRVyRJWsLCeQXzzvQLxV1DH7sNocXHlWNLfxFKgYTz2/qJ5JN7N7su2zQonMArc1Q0NC7y2ASKQssygh4YsNr0CLcYI2NNBIfzaJTWp7UoZja3tdy0YpOHMSA=%%53878057%if game.CoreGui.Version < 3 then return end -- peace out if we aren't using the right client
+--rbxsig%jgMUqocR133/5eIPA8IbaIpGF7nQrOOhxwbMhOxVePIbLQADQJ2H4PrU31+20bxYWLTexjUnVNJEzc6+cdi7rDtdkkJ7Ppw2u7kW7G9Asee7eKl3UEosTq+WCrjSnCpKGZR6z+vN0NWL7FxBQod3c2uHdq/xDJdBZ0i/KyShxEk=%
+--rbxassetid%53878057%
+if game.CoreGui.Version < 3 then return end -- peace out if we aren't using the right client
 
 -- A couple of necessary functions
 local function waitForChild(instance, name)

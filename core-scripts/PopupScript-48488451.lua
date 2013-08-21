@@ -1,4 +1,6 @@
-%VCRSTRglG7Nk9HRHoB9MEGxQGp7EtyO5NMsMDbycDULF+yA4tOtReUkiNEEWbspBBhLgant/tyWxbQrNZhhmICzGVQ7AoMCBHwZfkJi/Ln82dv3iisVDOYubpu0kDCT3iOx8IyBjx6vPHjNT5To3FW/NCpEi7yVfa9dtiDsS6aE=%%48488451%--build our gui
+--rbxsig%HjzGH2AZm7V2rFcQ/zXzPWu5Uti7CjBtmbxvtEUius63K6E9DIl6WW9UOJBiobY0W8hULBBHdNF60kNIS6B9NV+hRRNvWcEtBcQnUo5IY3Wu+g2yUNQfuBS4l3CJN4DaIcSWjyjcgmr9c2ue9DuJfIvNKZp+qqRIu1TAkubrM2o=%
+--rbxassetid%48488451%
+--build our gui
 
 local popupFrame = Instance.new("Frame")
 popupFrame.Position = UDim2.new(0.5,-165,0.5,-175)

@@ -1,4 +1,6 @@
-%SOqWvqlUP/FYmXdU7eY34psiwwjPJFVabgvj+EUmPxw0sR12GNNwBLp1yGthDG/Mn9EL5hPnlckhoSp1w3ndhQ27i2C4lK4EmBPSC29IvYpkBziytKiDzP89wnws9K8gDvhxdLQ8t0v/QWIqP69ld3wa2d95lCwpAvu0cotUqLg=%%64164692%-- Responsible for giving out tools in personal servers
+--rbxsig%I3tkWF4fIQbKAd8CMevA13zFOuT2yZHc4+N3mdsDowQ4decw2ao1S7uu5ImQO75SsSFEipKYlNmcNyx3pzs4AUruarUpmHHuW7sRK0IZIlIPEKS3B4BsOUw77QPFGH48+mYNGWssbpmiJj3bOxukVgHc6dB4nxBbIk3QnEWKTn4=%
+--rbxassetid%64164692%
+-- Responsible for giving out tools in personal servers
 
 -- first, lets see if buildTools have already been created
 -- create the object in lighting (TODO: move to some sort of "container" object when we have one)
@@ -7,7 +9,7 @@ local ownerArray = game.Lighting:FindFirstChild("OwnerToolsModel")
 local hasBuildTools = false
 
 function getIds(idTable, assetTable)
-  for i = 1, #idTable do
+	for i = 1, #idTable do
 		local model = game:GetService("InsertService"):LoadAsset(idTable[i])
 		if model then
 			local children = model:GetChildren()

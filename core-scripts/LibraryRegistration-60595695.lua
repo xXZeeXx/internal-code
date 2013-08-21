@@ -1,4 +1,6 @@
-%VuVyurIsEA1Hv5BQSfuJrYShwZk9+Sj+VRyupDFj4udcJ5szQEp1bCLUNKhvNvCBjvE+wR5K5F/tq0Q90HCEebCn9HWcIAFHUdlXHOqGxrs4TM6SKWnHcDhlK/O2gEcf5eJZzH1s1SYdt1UsArF4TL1TEKWT1WspRZzhon8xIxI=%%60595695%-- Library Registration Script
+--rbxsig%XXWjRSomOTnuv3sbCqOMyjMGR4uxvrufb2o+Qq+6SfM8kba6EDUXdzpL7chs+ZrE6Wyui9gtQuNpLi24jpjxHv2wMaj+cGxjL9IQuf4euMgnWqSyttYVWcqJxR6XACsWDoZ7pO0iLXdMOmYVPhzCH1X1jbdV59kAzTMA5w8uZfw=%
+--rbxassetid%60595695%
+-- Library Registration Script
 -- This script is used to register RbxLua libraries on game servers, so game scripts have
 -- access to all of the libraries (otherwise only local scripts do)
 

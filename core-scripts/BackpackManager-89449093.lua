@@ -1,4 +1,6 @@
-%jbbu8EEQm7j7fGJgrEE7oRApFZVaMF3GKi6WPgAk3ikJOtcPrAIUHnt1okrMn0ge/YXc2g5s6AseVpk4VMxFirH72C8246wxzcaMvAOUhIY7+lADILRbZ4TtvydOV2dTLyiOGjX1JFoK2IvA7oOrPji5KIuqRtRJaDhoUBNUKRU=%%89449093%-- This script manages context switches in the backpack (Gear to Wardrobe, etc.) and player state changes.  Also manages global functions across different tabs (currently only search)
+--rbxsig%U0/K12+ToGNAW+u5ibLtsfMC9ALS2n/W6fU5BcyVEwptsB9b4dwCNxVZyDLEzmbq69LVSOv/fqwkt/uRqxRCZKQGgj8JgX8QQJJKqb81eEpuok/T3dAB/XJEN5H/pXl7/o+jCJ19IEHWtPmQRsRQ1l0RzywAwvTku83ICe+K1wg=%
+--rbxassetid%89449093%
+-- This script manages context switches in the backpack (Gear to Wardrobe, etc.) and player state changes.  Also manages global functions across different tabs (currently only search)
 if game.CoreGui.Version < 7 then return end -- peace out if we aren't using the right client
 
 -- basic functions

@@ -1,4 +1,6 @@
-%BsA2cBPaSvEv//tIvuS5p2PkazBLj7fU86XzCSZAdfF+TdlZlpS1RaUchZu/HBbfZ81qMh271Lvo9SILVPPQ9VQEPaor0leY8B8ja1j0Xz7qFostL3ndF/bQXx9q+vgUz+tV49aAPeOQe7k/WwKWsNY/BmLfYtpOcYpPdNeZjak=%%37801172%-- Creates all neccessary scripts for the gui on initial load, everything except build tools
+--rbxsig%kh9aoqlOhzkDlALB8CeEtjgULwo5/xCWmmYJ0Q2jK35MPS5jRyVBToX4v4sI1yjCz7ENHA+OzQZmQetR3pLj3KpRq6Vd5uiRS7kGe2DGp2P3ibz2fSyg2s4soPViqyGaefY1/oRXObPlu/kpTbMhWG/bXK0CYtR8ukz61kh9c54=%
+--rbxassetid%37801172%
+-- Creates all neccessary scripts for the gui on initial load, everything except build tools
 -- Created by Ben T. 10/29/10
 -- Please note that these are loaded in a specific order to diminish errors/perceived load time by user
 local scriptContext = game:GetService("ScriptContext")
