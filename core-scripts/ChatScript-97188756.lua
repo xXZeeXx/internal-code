@@ -1,4 +1,6 @@
-%Y1x3T2HaVYXx2aEzlrG2mdc3C8LZ2GA2OobD7Uh+JPdiOoFb1oSc1G0grzy4yH93B5aa3qQpg0vG0E3GXOpShjXax7KAGp3X0NNJ6ccSUtMl1fM/DujUIQdI5hVv8wbZwZwcU5dGocTK4WUExe12vxGAswKA9aL+WHUfZJNj9YQ=%%97188756%--[[
+--rbxsig%NXvvVJsXNRqYoYr9MRExUTfxvxbHg6o8git0FfOmmTRYUF7kmQvtAI9oEFT25Rpt3sjzD/zT8G60ovHEm1Gk4LkbWO2lvagQ/zsBaNlxdlYfGElRS++LOz4/LTE8viftvNzCLeM3QdgrfyAUw4ZECf4qNVmAcEpjjzhuP/ZV0W8=%
+--rbxassetid%97188756%
+--[[
 	//FileName: ChatScript.LUA 
 	//Written by: Sorcus 
 	//Description: Code for lua side chat on ROBLOX. Supports Scrolling.
@@ -1328,7 +1330,6 @@ function Chat:Initialize()
 end
 
 Chat:Initialize()
-
 
 
 
