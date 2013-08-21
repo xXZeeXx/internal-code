@@ -1,4 +1,6 @@
-%ZiSq0JwK1Wtddr08jc4cbbMZfham0XUvE931Gh8WDggk2TTo9Ttkk17IO3U6IMpMGhyDutgCKUQ8LMlLjZOi41fRYKvCNGgVk0sfoMnXQeGXdM1DinIqOs6uvBCid/tk4IY1Ti7lr9J/GoS3IMccJnU5iflL+hJpfXsN0w0P9lU=%%73157242%local t = {}
+--rbxsig%RDGJzweMH6SxrHzcSZqKOkdcbX3GCVqr04RpDxn/xrF7fmEqXzOjTG+QZU7wREIOmWFIj7AtJOY6pD7S1rvE2EbKBPDKIKziIIz+HHRxces4Rjw2RCwcQD7MbYEvR/MsO7+G1WUFwcgHY06QWDmc0j++DzjSCAjxwN8RtK5MJJg=%
+--rbxassetid%73157242%
+local t = {}
 
 function waitForChild(instance, name)
 	while not instance:FindFirstChild(name) do
