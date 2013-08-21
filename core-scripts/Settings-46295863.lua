@@ -1,4 +1,6 @@
-%qsTTCom9OL8l1ZgQXz4yeg3UTLOTDnzfG5kxO6cS6nB0dFHHJ9/HMETWFAkYJC97Xn5/nm7VPdWt76VtmfSe4rcAQl4CmyD5L7zfaYzO5fDEZb044aclgbRqjgMQSxsIcfVUFQ/+PoC029UG72yYiNJoubhnhRraJySH/HX34WQ=%%46295863%local function waitForChild(instance, name)
+--rbxsig%kxZtGgrNWkTL3jG6/OfRg2Uf/dL6iymmkBBaqLGkk6m44asJCw4mVdUrPulMovi6jDNafSo+SLWhUrdtQqIT045RnYsLpgldNc8MwVc/VxxI2kJbJBZyPpq13pbqlBi11bVHaZWc8TWKemcXINQmxAC5RLfFUWUdOrT/UCCzLFE=%
+--rbxassetid%46295863%
+local function waitForChild(instance, name)
 	while not instance:FindFirstChild(name) do
 		instance.ChildAdded:wait()
 	end
