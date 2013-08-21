@@ -1,4 +1,6 @@
-%L10/SCIkst0ZxRzOrybwwcGHB9zzE6ICKd1c1GgePzjJe4Nn1DSfSb0VqBxUa9eIINTl+1cwsEGoiK4eyCBBsixN5SFH8Va8IWAHMLSKpzfwC3C+T0M12B+ZcDbvU4TVSXPsagaKbsyUADjxudPJis2/eXnow5f5/sBkUUCBqYE=%%48488235%
+--rbxsig%fUIoVQBQX+jvHNUZOnDkNeWypO+ptbbN21ufYfimcoPkr+eMzBGkV0blCsb8v1k7dyRtq51vq87t0KG8+NzD71Bn3FNev6JD98EajhTulTpm1giCyNnPeZtUXMrgpkpO/fhBLH5gRqAvD60nIGvs/uV8xIL0ykjdEEAuKaKrdFo=%
+--rbxassetid%48488235%
+
 --new playerlist by Zach Lindblad (fusroblox)
 --contact him for any revisions/issues
 --------------------  
@@ -2987,5 +2989,4 @@ IsPersonalServer= not not game.Workspace:FindFirstChild("PSVariable")
 		end
 	end)
  end
-
 
