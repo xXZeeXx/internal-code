@@ -1,4 +1,6 @@
-%fM84u9CCYoc5C98PZ4oVq+zhnW4z/7sIsO/zopm0Z7lLbtIxWWvZK0pf4VtFCv7I86COo2fKHLCgcUwsrHqrBIzHyjUj+fwFpAE87ZjxPtd5zcJ5P5DuHS1o73JheXdfkiBUtbXBkiurJAqC215yqHvj8Q+FRTRptTAQEdpkxOE=%%48488398%function waitForProperty(instance, property)
+--rbxsig%DIuke4NUwBAugRhVX8zUGw0lNHksGNmUbxnUjItyfN6YfmsPF6w9OML1jkc9uaOFfrayWCJEroukxRmuvY9E5jVqOM8TBXgRXfyVoJsVQ+YRTUdE1U1Jn/X7+oh/W1LN8Ayn42HhTEVjEbpVV+BHAeQZpjZltXo5qyozomUTeQE=%
+--rbxassetid%48488398%
+function waitForProperty(instance, property)
 	while not instance[property] do
 		instance.Changed:wait()
 	end
