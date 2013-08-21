@@ -1,4 +1,6 @@
-%H2kAeACQu7fXXnDTpSMMZIwj80C5VLRZ98pHUw0QZJBTCZqRrqQMGtVg0hKIoNtuaUhn//GjBcaIrK8ZrEBKH3uHa123jQEIvgfcEdJzHMUjGXnHIepTq4d+ctUezU4GJ0fLQ6wKpuGeuoMKfrnW6a1cUpq7QJ8WdLmxkxGsHmw=%%53878047%-- This script creates almost all gui elements found in the backpack (warning: there are a lot!)
+--rbxsig%ajqqTypn8cXmAlrdqhDKhItl413ndYEkpVdn/u7NGTmEyfwlhOJeSdZIZE+QLG/vRLkbVlp75MyPeWt7MR7K443uOfLnmRnXvj0XdhY0HQxdqVu9uRh1FvpjhLVWE3p9GRv2Vh99QxI/FUC0rDcT64cNueM8fjBp7QpFypJ1R+8=%
+--rbxassetid%53878047%
+-- This script creates almost all gui elements found in the backpack (warning: there are a lot!)
 -- TODO: automate this process
 
 if game.CoreGui.Version < 3 then return end -- peace out if we aren't using the right client
