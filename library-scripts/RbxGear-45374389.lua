@@ -1,4 +1,6 @@
-%BNwfYd6B3uyfSoukv8ylZ3JhojimN5srKfn26kbTi+Vkh4RDoWskOHKErSPB4EWfNNkfQW+0wriOtj4vNgQyU3Kcw380amj6rjKagiTFMoGT7fZ0PepLC26cUecsSHKYx38zqKlogTb4iI2g02vBhKtr95I0Nm29r+b+mnhdIsw=%%45374389%local t = {}
+--rbxsig%pR1KL5JTxcMTnwr9RQZkuLQk8eyx+s2DEW3/pEegIuri0K5LTsHfwBpfq11iqbQ0Pu56t192b56L7hUD4zc6O4Glu9V6qGKn6m+1RJgbzRZAj1GZrjwDmQTBt1U2NmTN4S8miYAlC6jAQLXJRHrKpwTVNK0nxbKGxzQ97BdtpZQ=%
+--rbxassetid%45374389%
+local t = {}
 
 t.Foo = 
 	function() 
