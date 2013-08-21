@@ -1,4 +1,6 @@
-%BSsJFRNW5bsHsER/f/ips2tsU6t+lE+4l4ftX1mWsSf7WG6rPhtCtHDpMxlZwEYdec3ehRV57NM61nL38lEZFPJuuZHjdNitmewZK/BZYhBGhbEhD4Imdbf6nO6GT7UvvhGj3zSKhxN0uelk+I7bJLqIIv607MkZn1/MvOzyATs=%%60595411%local t = {}
+--rbxsig%py7DtxVWYsfiGWFcgOeTTD6t0Y83b+A8f/srSajSOoTfmDGWj4ZZOUrHRAb0bF1HYs/cTXG10GhZn0vFWP5jDEKOuAlmVYbdattbE/6+DIGFVwzRT8TycYFLLCol0lcc79vrU1b0RnPYt8bZwGnbFeWIObCxHKrGgQXDYKwGeuQ=%
+--rbxassetid%60595411%
+local t = {}
 
  
 
@@ -1087,7 +1089,6 @@ t.Help =
 --------------------------------------------Documentation Ends----------------------------------------------------------
 
 return t
-
 
 
 
