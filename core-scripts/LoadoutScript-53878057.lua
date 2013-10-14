@@ -1,4 +1,4 @@
---rbxsig%jgMUqocR133/5eIPA8IbaIpGF7nQrOOhxwbMhOxVePIbLQADQJ2H4PrU31+20bxYWLTexjUnVNJEzc6+cdi7rDtdkkJ7Ppw2u7kW7G9Asee7eKl3UEosTq+WCrjSnCpKGZR6z+vN0NWL7FxBQod3c2uHdq/xDJdBZ0i/KyShxEk=%
+--rbxsig%kjw3Mg6Cjs05IHRfbWcpu0m7z+IPYNp8U/EW6PHrlnB8zNk4uiDGO4kOl5mHRUkWvxu7nHnWitgEPMa4c6xxJIIOqsexiB6akoZ+wuVdeR8nVGbyc6LyUZl8lY9IgbWUxWQn5ZgLRYGIzS9gPAhO80DihaSju/D1Vd1n4eXf1gI=%
 --rbxassetid%53878057%
 if game.CoreGui.Version < 3 then return end -- peace out if we aren't using the right client
 
@@ -17,6 +17,7 @@ end
 
 local currentLoadout = script.Parent
 local StaticTabName = "gear"
+local backpackEnabled = true
 
 local robloxGui = game:GetService("CoreGui"):FindFirstChild("RobloxGui")
 assert(robloxGui)
@@ -43,6 +44,12 @@ local function moveHealthBar(pGui)
 	tray.Position = UDim2.new(0.5, -85, 1, -26)
 end
 
+local function setHealthBarVisible( pGui, visible )
+	waitForChild(pGui, 'HealthGUI')
+	waitForChild(pGui['HealthGUI'], 'tray')
+	local tray = pGui['HealthGUI']['tray']
+	tray.Visible = visible
+end
 
 
 --- Begin Locals
@@ -96,10 +103,6 @@ local firstInstanceOfLoadout = false
 
 local inventory = {}
 
-for i = 0, 9 do
-	game:GetService("GuiService"):AddKey(tostring(i)) -- register our keys
-end
-
 local gearSlots = {}
 for i = 1, maxNumLoadoutItems do
 	gearSlots[i] = "empty"
@@ -127,6 +130,20 @@ local function kill(prop,con,gear)
 	if prop == true and gear then
 		reorganizeLoadout(gear,false)
 	end
+end
+
+function registerNumberKeys()
+	for i = 0, 9 do
+		game:GetService("GuiService"):AddKey(tostring(i))
+	end
+end
+
+function unregisterNumberKeys()
+	pcall(function()
+		for i = 0, 9 do
+			game:GetService("GuiService"):RemoveKey(tostring(i))
+		end
+	end)
 end
 
 function characterInWorkspace()
@@ -745,8 +762,10 @@ local addingPlayerChild = function(child, equipped, addToSlot, inventoryGearButt
 		for i = 1, #gearSlots do 
 			if gearSlots[i] ~= 'empty' then 
 				backpackButton.Position = UDim2.new(0.5, -60, 1, -108)
-				backpackButton.Visible = true 
-				clBackground.Visible = true 
+				if backpackEnabled then
+					backpackButton.Visible = true 
+					clBackground.Visible = true 
+				end
 			end 
 		end 
 	end)
@@ -796,7 +815,6 @@ local spreadOutGear = function()
 end
 
 local centerGear = function()
-	backpackWasOpened = true 
 	loadoutChildren = currentLoadout:GetChildren()
 	local gearButtons = {}
 	local lastSlotAdd = nil
@@ -826,7 +844,8 @@ local centerGear = function()
 	end
 end
 
-function editLoadout()	
+function editLoadout()
+	backpackWasOpened = true 
 	if inGearTab then
 		spreadOutGear()
 	end
@@ -843,8 +862,10 @@ function setupBackpackListener()
 	backpackChildCon = player.Backpack.ChildAdded:connect(function(child)		
 		if not firstInstanceOfLoadout then 
 			firstInstanceOfLoadout = true 
-			backpackButton.Visible = true 			
-			clBackground.Visible = true 
+			if backpackEnabled then
+				backpackButton.Visible = true 			
+				clBackground.Visible = true 
+			end
 		end 
 		addingPlayerChild(child)
 		addToInventory(child)
@@ -873,27 +894,39 @@ function tabHandler(inFocus)
 	end
 end
 
--- NOTE: Nuke once event based system works 100% cases
-local function handlePhoneLag()
-	for i = 1, 45 do 
-		if i < 25 or not backpackWasOpened then 
-			if robloxGui.AbsoluteSize.Y <= 320 then 		
-				local cChildren = currentLoadout:GetChildren()
-				for i = 1, #cChildren do 
-					local slotNum = tonumber(string.sub(cChildren[i].Name, 5, string.len(cChildren[i].Name)))			
-					if type(slotNum) == 'number' then 				
-						cChildren[i].Position = UDim2.new(0, (slotNum-1) * 60, 0, 0)
-						cChildren[i].BackgroundTransparency = 1.0 
-					end 
-				end 
-			end 						
-		end 	
-		wait(0.25)
-	end 
-end 
+function coreGuiChanged(coreGuiType,enabled)
+	if coreGuiType == Enum.CoreGuiType.Backpack or coreGuiType == Enum.CoreGuiType.All then
+		backpackButton.Visible = enabled 
+		clBackground.Visible = enabled
+		backpackEnabled = enabled
+
+		if enabled then
+			registerNumberKeys()
+		else
+			unregisterNumberKeys()
+		end
+	end
+
+	if coreGuiType == Enum.CoreGuiType.Health or coreGuiType == Enum.CoreGuiType.All then
+		setHealthBarVisible(game.Players.LocalPlayer.PlayerGui, enabled)
+	end
+end
 -- End Functions
 
+
+
+
+
+
 -- Begin Script
+registerNumberKeys()
+
+pcall(function ()
+	coreGuiChanged(Enum.CoreGuiType.Backpack, Game.StarterGui:GetCoreGuiEnabled(Enum.CoreGuiType.Backpack))
+	coreGuiChanged(Enum.CoreGuiType.Health, Game.StarterGui:GetCoreGuiEnabled(Enum.CoreGuiType.Health))
+	Game.StarterGui.CoreGuiChangedSignal:connect(coreGuiChanged)
+end)
+
 wait() -- let stuff initialize incase this is first heartbeat...
 
 waitForChild(player,"Backpack")
@@ -904,16 +937,31 @@ delay(1,function()
 	local backpackChildren = player.Backpack:GetChildren()
 	local size = math.min(10,#backpackChildren)
 	for i = 1, size do
-		backpackButton.Visible = true 
-		clBackground.Visible = true 
+		if backpackEnabled then
+			backpackButton.Visible = true 
+			clBackground.Visible = true
+		end
 		addingPlayerChild(backpackChildren[i],false)
 	end
 	setupBackpackListener()
 end)
 
--- NOTE: This is terrible. Event based system seems to fail almost 30% cases
--- So using polling here. Consider this as an intermediate alternative. 
-delay(0, handlePhoneLag)	
+delay(2, function()	
+	--while true do 
+		if not backpackWasOpened then 
+			if robloxGui.AbsoluteSize.Y <= 320 then 		
+				local cChildren = currentLoadout:GetChildren()
+				for i = 1, #cChildren do 
+					local slotNum = tonumber(string.sub(cChildren[i].Name, 5, string.len(cChildren[i].Name)))			
+					if type(slotNum) == 'number' then 				
+						cChildren[i].Position = UDim2.new(0, (slotNum-1) * 60, 0, 0)
+					end 
+				end 
+			end 
+		end 
+		wait(0.25)
+	--end
+end) 
 
 player.ChildAdded:connect(function(child)
 	if child:IsA('PlayerGui') then 		
@@ -931,7 +979,8 @@ waitForChild(player.Character,"Humanoid")
 humanoidDiedCon = player.Character.Humanoid.Died:connect(function()
 	if humanoidDiedCon then humanoidDiedCon:disconnect() humanoidDiedCon = nil end
 	deactivateLoadout()
-	if backpackChildCon then backpackChildCon:disconnect() backpackChildCon = nil end	 
+	if backpackChildCon then backpackChildCon:disconnect() backpackChildCon = nil end
+	backpackWasOpened = false 
 end)
 
 player.CharacterRemoving:connect(function()
@@ -944,7 +993,6 @@ player.CharacterRemoving:connect(function()
 end)
 
 player.CharacterAdded:connect(function()	
-	backpackWasOpened = false 	
 	waitForProperty(game.Players,"LocalPlayer")		
 	player = game.Players.LocalPlayer -- make sure we are still looking at the correct character
 	waitForChild(player,"Backpack")	
@@ -954,8 +1002,10 @@ player.CharacterAdded:connect(function()
 		local backpackChildren = player.Backpack:GetChildren()
 		local size = math.min(10,#backpackChildren)
 		for i = 1, size do
-			backpackButton.Visible = true 
-			clBackground.Visible = true 
+			if backpackEnabled then
+				backpackButton.Visible = true 
+				clBackground.Visible = true 
+			end
 			addingPlayerChild(backpackChildren[i],false)
 		end
 		setupBackpackListener()
@@ -979,8 +1029,10 @@ player.CharacterAdded:connect(function()
 	end 
 	humanoidDiedCon =
 		player.Character.Humanoid.Died:connect(function()
-			backpackButton.Visible = false
-			clBackground.Visible = false 
+			if backpackEnabled then
+				backpackButton.Visible = false
+				clBackground.Visible = false 
+			end
 			firstInstanceOfLoadout = false 
 			deactivateLoadout()					
 						
@@ -989,8 +1041,22 @@ player.CharacterAdded:connect(function()
 		end)
 	waitForChild(player, 'PlayerGui')
 	moveHealthBar(player.PlayerGui)
-	delay(0, handlePhoneLag)
-
+	delay(2, function()	
+	--while true do 
+		if not backpackWasOpened then 
+			if robloxGui.AbsoluteSize.Y <= 320 then 		
+				local cChildren = currentLoadout:GetChildren()
+				for i = 1, #cChildren do 
+					local slotNum = tonumber(string.sub(cChildren[i].Name, 5, string.len(cChildren[i].Name)))			
+					if type(slotNum) == 'number' then 				
+						cChildren[i].Position = UDim2.new(0, (slotNum-1) * 60, 0, 0)
+					end 
+				end 
+			end 
+		end 
+		wait(0.25)
+	--end
+	end) 	
 end)
 
 waitForChild(guiBackpack,"SwapSlot")
