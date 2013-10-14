@@ -1,4 +1,4 @@
---rbxsig%U0/K12+ToGNAW+u5ibLtsfMC9ALS2n/W6fU5BcyVEwptsB9b4dwCNxVZyDLEzmbq69LVSOv/fqwkt/uRqxRCZKQGgj8JgX8QQJJKqb81eEpuok/T3dAB/XJEN5H/pXl7/o+jCJ19IEHWtPmQRsRQ1l0RzywAwvTku83ICe+K1wg=%
+--rbxsig%XgHYap0zPCI7GfJUVtexCndf0G4Q/l9hp6hspEfz2muogdIjo2CiuR/z4pMyTG4KeIC7lUhxV9yuAodaSOeZ7cJsrVKelc/iCiWGomUUAfy1/8XELPc7ZCbKXnV0k46l7H1t1+VWROj2X83yn0Y0bbnbEPLXVN56ss6PQ8f1gaU=%
 --rbxassetid%89449093%
 -- This script manages context switches in the backpack (Gear to Wardrobe, etc.) and player state changes.  Also manages global functions across different tabs (currently only search)
 if game.CoreGui.Version < 7 then return end -- peace out if we aren't using the right client
@@ -79,6 +79,7 @@ local backpackSize = UDim2.new(0, 600, 0, 400)
 if robloxGui.AbsoluteSize.Y <= 320 then 
 	backpackSize = UDim2.new(0, 200, 0, 140)
 end 
+
 
 ------------------------ End Locals ---------------------------
 
@@ -208,7 +209,6 @@ function toggleBackpack()
 		loadoutBackground.Size = UDim2.new(1.05, 0, 1.25, 0)
 		loadoutBackground.ZIndex = 2.0
 		loadoutBackground.Visible = true
-		--backpackButton.Position = UDim2.new(0.5, -60, 1, -503)
 		showBackpack()
 	else		
 		backpackButton.Position = UDim2.new(0.5, -60, 1, -44)
@@ -349,6 +349,19 @@ local backpackReady = function()
 	readyForNextEvent = true
 end
 
+function coreGuiChanged(coreGuiType,enabled)
+	if coreGuiType == Enum.CoreGuiType.Backpack or coreGuiType == Enum.CoreGuiType.All then
+		active = enabled
+
+		resetSearch()
+		searchFrame.Visible = enabled and backpackIsOpen
+
+		currentLoadout.Visible = enabled
+		backpack.Visible = enabled
+		backpackButton.Visible = enabled
+	end
+end
+
 --------------------------- End Internal Functions -------------------------------------
 
 
@@ -359,6 +372,11 @@ createPublicFunction("BackpackReady", backpackReady)
 
 
 ------------------------ Connections/Script Main -------------------------------------------
+
+pcall(function()
+	coreGuiChanged(Enum.CoreGuiType.Backpack, Game.StarterGui:GetCoreGuiEnabled(Enum.CoreGuiType.Backpack))
+	Game.StarterGui.CoreGuiChangedSignal:connect(coreGuiChanged)
+end)
 
 inventoryButton.MouseButton1Click:connect(function() newTabClicked("gear") end)
 inventoryButton.MouseEnter:connect(function() mouseOverTab(inventoryButton) end)
@@ -413,5 +431,3 @@ if searchFrame and robloxGui.AbsoluteSize.Y <= 320 then
 	searchFrame.RobloxLocked = false 
 	searchFrame:Destroy() 
 end 
-
---backpackButton.Visible = true
