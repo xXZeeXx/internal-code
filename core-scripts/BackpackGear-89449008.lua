@@ -1,4 +1,4 @@
---rbxsig%mvW8V0yasZXYRTmBj4iW7Hd5xjL+7X7yvuOn2ce2VQOLIxIY1BztNvWiOHHuv8gqNr1yRX7dEDH3e5AhjoBMyC6nmjN8MbnUYYL0uOxISEB/i2jb+7S1jni8+eHYPXqD/MqQ5WFMw+/vvPLET29nKotwg40b3iX7GU6ChqfIRjk=%
+--rbxsig%Sesvh4lMu6sHLuZtQwHXsCAuO1zM70ONISGMrnQRXUYHjNM/HBqLCY5kzhvyizVY+vZOyu4Jb1hijAPSRCOOMVwuvKKdATY5cxPIe7REFWFQ8Ti2TvqMU0c66KJzBNjNbOPjIPtPTwe+WqyU+u2q+QIUlRfWfTLn24l9Gy25M84=%
 --rbxassetid%89449008%
 -- A couple of necessary functions
 local function waitForChild(instance, name)
@@ -769,6 +769,15 @@ function getGearContextMenu()
 	return gearContextMenu
 end
 
+function coreGuiChanged(coreGuiType,enabled)
+	if coreGuiType == Enum.CoreGuiType.Backpack or coreGuiType == Enum.CoreGuiType.All then
+		if not enabled then
+			backpack.Gear.Visible = false
+		end
+	end
+end
+
+
 local backpackChildren = player.Backpack:GetChildren()
 for i = 1, #backpackChildren do
 	addToGrid(backpackChildren[i])
@@ -837,6 +846,11 @@ for i = 1, #loadoutChildren do
 	end
 end
 ------------------------- End Lifelong Connections -----------------------
+
+pcall(function()
+	coreGuiChanged(Enum.CoreGuiType.Backpack, Game.StarterGui:GetCoreGuiEnabled(Enum.CoreGuiType.Backpack))
+	Game.StarterGui.CoreGuiChangedSignal:connect(coreGuiChanged)
+end)
 
 resize()
 resizeGrid()
