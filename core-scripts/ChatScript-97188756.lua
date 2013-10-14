@@ -1,4 +1,4 @@
---rbxsig%NXvvVJsXNRqYoYr9MRExUTfxvxbHg6o8git0FfOmmTRYUF7kmQvtAI9oEFT25Rpt3sjzD/zT8G60ovHEm1Gk4LkbWO2lvagQ/zsBaNlxdlYfGElRS++LOz4/LTE8viftvNzCLeM3QdgrfyAUw4ZECf4qNVmAcEpjjzhuP/ZV0W8=%
+--rbxsig%AnAIUMbdEXYPKj7Bk74Ncnl94LKK4XB7S1IeDgqKVwTtvJO9dVzyaVCqo26mLsmjI9PTMN3OKr4Y005nKpjbzHCQXFNni5t/QkdbItceLe9pTpqIWME301sge/vWKg77CnTtvEbnCqIVAZIb+hQ8eUws9Yvi6vDBcmAjrHmHo5Q=%
 --rbxassetid%97188756%
 --[[
 	//FileName: ChatScript.LUA 
@@ -6,6 +6,8 @@
 	//Description: Code for lua side chat on ROBLOX. Supports Scrolling.
 	//NOTE: If you find any bugs or inaccuracies PM Sorcus on ROBLOX or @Canavus on Twitter 
 ]]
+
+local forceChatGUI = false
 
 -- Utility functions + Globals
 local function WaitForChild(parent, childName)	
@@ -940,7 +942,7 @@ function Chat:FocusOnChatBar()
 	self.GotFocus = true
 	if self.Frame['Background'] then 
 		self.Frame.Background.Visible = false 
-	end 	
+	end
 	self.ChatBar:CaptureFocus()
 end
 
@@ -962,7 +964,6 @@ function Chat:CreateTouchButton()
 								BackgroundTransparency = 1.0;								
 								ZIndex = 2.0;								
 							};		
-
 							Gui.Create'ImageLabel'
 							{
 								Name = 'Background';
@@ -971,6 +972,7 @@ function Chat:CreateTouchButton()
 								BackgroundTransparency = 1.0;
 								Image = 'http://www.roblox.com/asset/?id=97078724'
 							};
+
 						}
 	self.TapToChatLabel = self.ChatTouchFrame.ChatLabel	
 	self.TouchLabelBackground = self.ChatTouchFrame.Background
@@ -1004,8 +1006,8 @@ end
 -- Non touch devices, create the bottom chat bar 
 function Chat:CreateChatBar()
 	-- okay now we do 
-	local status, result = pcall(function() return GuiService.UseLuaChat end)		
-	if status and result then 	
+	local status, result = pcall(function() return GuiService.UseLuaChat end)	
+	if forceChatGUI or (status and result) then 	
 		self.ClickToChatButton = Gui.Create'TextButton'
 								{
 									Name = 'ClickToChat';
@@ -1128,10 +1130,9 @@ function Chat:CreateGui()
 		end)
 	end 		
 
-	if Player.ChatMode == Enum.ChatMode.TextAndMenu then 			
+	if forceChatGUI or Player.ChatMode == Enum.ChatMode.TextAndMenu then 			
 		if Chat:IsTouchDevice() then   
 			Chat:CreateTouchButton() 	
-
 		else 
 			Chat:CreateChatBar()
 			--Chat:CreateSafeChatGui()
@@ -1249,10 +1250,13 @@ function Chat:PlayerChatted(...)
 			message = '(TEAM) ' .. string.sub(message, 2, #message)
 		end 
 	end 
-	if PlayersService.ClassicChat then 				
-		if Player.ChatMode == Enum.ChatMode.TextAndMenu then 
+
+	if PlayersService.ClassicChat then 			
+		if string.sub(message, 1, 3) == '/e ' or string.sub(message, 1, 7) == '/emote ' then 	
+			-- don't do anything right now
+		elseif forceChatGUI or Player.ChatMode == Enum.ChatMode.TextAndMenu then 
 			Chat:UpdateChat(player, message) 
-		elseif Player.ChatMode == Enum.ChatMode.Menu and string.sub(message, 3) == '/sc' then 			
+		elseif Player.ChatMode == Enum.ChatMode.Menu and string.sub(message, 1, 3) == '/sc' then 			
 			Chat:UpdateChat(player, message)			
 		else 
 			if Chat:FindMessageInSafeChat(message, self.SafeChat_List) then 
@@ -1290,10 +1294,32 @@ function Chat:LockAllFields(gui)
 	end 
 end
 
+function Chat:CoreGuiChanged(coreGuiType,enabled)
+	if coreGuiType == Enum.CoreGuiType.Chat or coreGuiType == Enum.CoreGuiType.All then
+		if self.Frame then self.Frame.Visible = enabled end
+
+		if not Chat:IsTouchDevice() and self.ChatBar then 
+			self.ChatBar.Visible = enabled 
+			if enabled then
+				GuiService:SetGlobalGuiInset(0, 0, 0, 20)
+			else
+				GuiService:SetGlobalGuiInset(0, 0, 0, 0)
+			end
+		end
+	end
+end
+
 -- Constructor 
 -- This function initializes everything 
 function Chat:Initialize()			
+
 	Chat:CreateGui() 		
+
+	pcall(function()
+		Chat:CoreGuiChanged(Enum.CoreGuiType.Chat, Game.StarterGui:GetCoreGuiEnabled(Enum.CoreGuiType.Chat))
+		Game.StarterGui.CoreGuiChangedSignal:connect(function(coreGuiType,enabled) Chat:CoreGuiChanged(coreGuiType,enabled) end)
+	end)
+
 	self.EventListener = PlayersService.PlayerChatted:connect(function(...) 	
 		-- This event has 4 callback arguments 
 		-- Enum.PlayerChatType.All, chatPlayer, message, targetPlayer 
@@ -1330,11 +1356,3 @@ function Chat:Initialize()
 end
 
 Chat:Initialize()
-
-
-
-
-
-
-
-
