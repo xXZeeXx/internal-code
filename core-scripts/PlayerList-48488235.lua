@@ -1,4 +1,4 @@
---rbxsig%fUIoVQBQX+jvHNUZOnDkNeWypO+ptbbN21ufYfimcoPkr+eMzBGkV0blCsb8v1k7dyRtq51vq87t0KG8+NzD71Bn3FNev6JD98EajhTulTpm1giCyNnPeZtUXMrgpkpO/fhBLH5gRqAvD60nIGvs/uV8xIL0ykjdEEAuKaKrdFo=%
+--rbxsig%pUkiKR+DzOk6drJYjKO9tGKQfZCSbtrkZnZW9wjjKSVS4JGiv27ucij3/r7f/g0BUZJPhj48huzUqEfqY3JgwRCDuA3UFYjhfWSi2ywgNhNvbMksYCxw/YuYG0EZj8D2SnZqZCqoo39q0obEZz2R1EnZG7HLAKQ26aVZOFd9ZXE=%
 --rbxassetid%48488235%
 
 --new playerlist by Zach Lindblad (fusroblox)
@@ -9,80 +9,120 @@
 
 local ADMINS =
 {
-	builderman = 1,
-	imtotallyadmin = 1,
-	fusroblox = 'http://www.roblox.com/asset/?id=99852703',
-	hotthoth = 1,
-	onlytwentycharacters = 1,
-	shedletsky = 'http://www.roblox.com/asset/?id=105897927',
-	solarcrane = 1,
-	tarabyte = 1,
-	telamon = 'http://www.roblox.com/asset/?id=105897927',
-	sorcus = 'http://www.roblox.com/asset/?id=113059239',
 	aceswayuphigh = 1,
-	phil = 1, 
-	games = 1,
-	rbadam = 1,
-	atrippy = 1,
+	adamintygum = 1,
 	afackler11 = 1,
-	commandercrow = 1,
-	robliu = 1,
-	vaiobot = 1,
-	blockhaak = 1,
-	tone = 1,
-	zeuxcg = 1,
-	reesemcblox = 1,
-	jeditkacheff = 1,
+	aleverns = 1,
+	aquabot8 = 1,
 	arbolito = 1,
-	noob007 = 1,
-	tabemono = 1,
+	argforpirates = 1,
+	argonpirate = 1,
+	asmohdian = 1,
+	bellavour = 1,
+	blockhaak = 1,
 	brighteyes = 1,
-	maclir = 1,
-	lordrugdumph = 1,
-	gen2integ = 1,
-	daveyorkrbx = 1,
-	deeana00 = 1,
-	niquemonster = 1,
+	briguy9876 = 1,
+	builderman = 1,
+	cdakkar = 1,
+	chiefjustus = 1,
+	chro = 1,
+	cmed = 1,
+	coatp0cketninja = 1,
+	codewriter = 1,
+	commandercrow = 1,
+	corgiparade = 1,
+	dapperbuffalo = 1,
 	dbapostle = 1,
+	deeana00 = 1,
+	doughtless = 1,
+	dunbar1138 = 1,
 	echodown = 1,
-	ralphraccoon = 1,
-	thegigi = 1,
-	ostrichsized = 1,
-	joshuamarcelo = 1,
+	ffjosh = 1,
+	foyle = 1,
+	fusroblox = 'http://www.roblox.com/asset/?id=99852703',
+	gemlocker = 1,
+	goddessnoob = 1,
+	gongfutiger = 1,
+	gordonrox24 = 1,
+	gorroth = 1,
+	grossinger = 1,
+	groundcontroll2 = 1,
+	hawkeyebandit = 1,
+	hawkington = 1,
+	ibanez2189 = 1,
+	iltalumi = 1,
+	inventx = 1,
+	jeditkacheff = 1,
 	kbux = 1,
 	keith = 1,
-	gongfutiger = 1,
+	limon = 1,
+	loopylens = 1,
+	lordrugdumph = 1,
+	majortom4321 = 1,
 	malcomso = 1,
-	stickmasterluke = 1,
-	finsurf = 1,
-	totbl = 1,
-	nachi = 1,
-	nariman = 1,
-	njay = 1,
-	fancynoodle = 1,
+	maxvee = 1,
+	midwinterfires = 1,
+	mistersquirrel = 1,
+	morganic = 1,
+	motornerve = 1,
+	mrdoombringer = 1,
+	mse6 = 1,
+	newtrat = 1,
+	niquemonster = 1,
+	nobledragon = 1,
+	noob007 = 1,
+	nrawat1 = 1,
 	olive71 = 1,
-	soggoth = 1,
-	philler76 = 1,
-	lyttle23 = 1,
-	ravenger7  = 1,
+	onlytwentycharacters = 1,
+	orcasparkles = 1,
+	ostrichsized = 1,
+	phaedre = 1,
+	phil = 1,
+	pulmoesflor = 1,
 	raeglyn = 1,
-	robloxsai = 1,
-	aleverns = 1,
-	gemlocker = 1,
-	stuball = 1,
-	timobius = 1,
-	roblotim = 1,
-	tobotrobot = 1,
-	twberg = 1,
-	vladthefirst = 1,
+	rbadam = 1,
+	reesemcblox = 1,
+	robliu = 1,
 	roblowilson = 1,
+	robloxsai = 1,
 	roboyz = 1,
-	zaki = 1,
+	saurauss = 1,
+	screenme = 1,
+	scubasomething = 1,
+	seanthornton = 1,
+	shedletsky = 'http://www.roblox.com/asset/?id=105897927',
+	sickenedmonkey = 1,
+	slingshotjunkie = 1,
+	smeaferblox = 1,
+	soggoth = 1,
+	solarcrane = 1,
+	sooraya = 1,
+	sorcus = 'http://www.roblox.com/asset/?id=113059239',
+	squidcod = 1,
+	stickmasterluke = 1,
+	stuball = 1,
+	tabemono = 1,
+	tarabyte = 1,
+	thelorekt = 1,
+	thorasaur = 1,
+	timobius = 1,
+	tobotrobot = 1,
+	tone = 1,
+	totallynothere = 1,
+	totbl = 1,
+	twberg = 1,
+	vaiobot = 1,
+	varia = 1,
+	vladthefirst = 1,
+	wonderboy76 = 1,
+	xerolayne = 1,
+	yesth = 1,
+	yumyumcheerios = 1,
+	zeuxcg = 1,
+	zodiaczak = 1,
 	['erik.cassel'] = 1,
 	['david.baszucki'] = 1,
 	['matt dusek'] = 1,
-	cr3470r = 1,
-	chiefjustus = 1,
 }
 
 local Images = {
@@ -2930,6 +2970,12 @@ function PlayersChildAdded(tplayer)
 	end
 end
 
+function coreGuiChanged(coreGuiType, enabled)
+	if coreGuiType == Enum.CoreGuiType.All or coreGuiType == Enum.CoreGuiType.PlayerList then
+		MainFrame.Visible = enabled
+	end
+end
+
 function TeamsChildAdded(nteam)
 	if nteam:IsA('Team') then 
 		TeamAdded(nteam)
@@ -2952,6 +2998,11 @@ end
 function debugPlayerAdd(p)
 	InsertPlayerFrame(p)
 end
+
+pcall(function()
+	coreGuiChanged(Enum.CoreGuiType.PlayerList, Game.StarterGui:GetCoreGuiEnabled(Enum.CoreGuiType.PlayerList))
+	Game.StarterGui.CoreGuiChangedSignal:connect(coreGuiChanged)
+end)
  
 while not game:GetService('Teams') do wait(1/30) debugprint('Waiting For Teams') end
 for _,i in pairs(game.Teams:GetTeams()) do TeamAdded(i) end
@@ -2989,5 +3040,4 @@ IsPersonalServer= not not game.Workspace:FindFirstChild("PSVariable")
 		end
 	end)
  end
-
 
