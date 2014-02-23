@@ -1,4 +1,4 @@
---rbxsig%XgHYap0zPCI7GfJUVtexCndf0G4Q/l9hp6hspEfz2muogdIjo2CiuR/z4pMyTG4KeIC7lUhxV9yuAodaSOeZ7cJsrVKelc/iCiWGomUUAfy1/8XELPc7ZCbKXnV0k46l7H1t1+VWROj2X83yn0Y0bbnbEPLXVN56ss6PQ8f1gaU=%
+--rbxsig%HUfNx5Rt/+UHEdAiUVrwbUl8I86Q8R02lVcWkcz5LYX2sUKP748je5+ti9YrkBQMFGQ1Hi7U9CGf1X8IYfQIpFZ+q/WYS1jb0di3kC8ehQIfuyHakogMiKfXvK2zwAkvaaz5c06/RtklviWom6h/x1QLKXh322m/8cqWxg6aG58=%
 --rbxassetid%89449093%
 -- This script manages context switches in the backpack (Gear to Wardrobe, etc.) and player state changes.  Also manages global functions across different tabs (currently only search)
 if game.CoreGui.Version < 7 then return end -- peace out if we aren't using the right client
@@ -63,6 +63,7 @@ local canToggle = true
 local readyForNextEvent = true
 local backpackIsOpen = false
 local active = true
+local disabledByDeveloper = false
 
 local humanoidDiedCon = nil
 
@@ -352,6 +353,17 @@ end
 function coreGuiChanged(coreGuiType,enabled)
 	if coreGuiType == Enum.CoreGuiType.Backpack or coreGuiType == Enum.CoreGuiType.All then
 		active = enabled
+		disabledByDeveloper = not enabled
+
+		if disabledByDeveloper then
+			pcall(function() 
+				game:GetService("GuiService"):RemoveKey(tilde)
+				game:GetService("GuiService"):RemoveKey(backquote)
+			end)
+		else
+			game:GetService("GuiService"):AddKey(tilde)
+			game:GetService("GuiService"):AddKey(backquote)
+		end
 
 		resetSearch()
 		searchFrame.Visible = enabled and backpackIsOpen
@@ -400,13 +412,13 @@ end)
 game:GetService("GuiService"):AddKey(tilde)
 game:GetService("GuiService"):AddKey(backquote)
 game:GetService("GuiService").KeyPressed:connect(function(key)
-	if not active then return end
+	if not active or disabledByDeveloper then return end
 	if key == tilde or key == backquote then
 		toggleBackpack()
 	end
 end)
 backpackButton.MouseButton1Click:connect(function() 
-	if not active then return end
+	if not active or disabledByDeveloper then return end
 	toggleBackpack()
 end)
 

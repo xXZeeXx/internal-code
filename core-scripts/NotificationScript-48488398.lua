@@ -1,4 +1,4 @@
---rbxsig%DIuke4NUwBAugRhVX8zUGw0lNHksGNmUbxnUjItyfN6YfmsPF6w9OML1jkc9uaOFfrayWCJEroukxRmuvY9E5jVqOM8TBXgRXfyVoJsVQ+YRTUdE1U1Jn/X7+oh/W1LN8Ayn42HhTEVjEbpVV+BHAeQZpjZltXo5qyozomUTeQE=%
+--rbxsig%k6ZG6Ah8SJ9wh6xln8/JHR7F26q0QSt+HM+XYvop9DR+6u66dHIHgY+Qxaj2chFCAaGNW/cXxZu38LBOUhlgKIIWuc/xuV5elEQyaFtyVTXRh2B3UfPbFrrOA+o5lrJ5JL82yh86j1guN+xA2aAPf03KWhemsLe8DfMkTvqejlU=%
 --rbxassetid%48488398%
 function waitForProperty(instance, property)
 	while not instance[property] do
@@ -17,6 +17,8 @@ waitForChild(script.Parent.Popup,"AcceptButton")
 script.Parent.Popup.AcceptButton.Modal = true
 
 local localPlayer = game.Players.LocalPlayer
+local teleportUI = nil
+
 local acceptedTeleport = Instance.new("IntValue")
 
 local friendRequestBlacklist = {}
@@ -120,13 +122,44 @@ function showTwoButtons()
 	end	
 end
 
+function onTeleport(teleportState, placeId, spawnName)
+	if game:GetService("TeleportService").CustomizedTeleportUI == false then
+		if teleportState == Enum.TeleportState.Started then
+			showTeleportUI("Teleport started...", 0)
+		elseif teleportState == Enum.TeleportState.WaitingForServer then
+			showTeleportUI("Requesting server...", 0)
+		elseif teleportState == Enum.TeleportState.InProgress then
+			showTeleportUI("Teleporting...", 0)
+		elseif teleportState == Enum.TeleportState.Failed then
+			showTeleportUI("Teleport failed. Insufficient privileges or target place does not exist.", 3)
+		end
+	end
+end
+
+function showTeleportUI(message, timer)
+	if teleportUI ~= nil then
+		teleportUI:Remove()
+	end
+	waitForChild(localPlayer, "PlayerGui")
+	teleportUI = Instance.new("Message", localPlayer.PlayerGui)
+	teleportUI.Text = message
+	if timer > 0 then
+		wait(timer)
+		teleportUI:Remove()
+	end
+end
+
 if teleportEnabled then
+
+	localPlayer.OnTeleport:connect(onTeleport)
+
 	game:GetService("TeleportService").ErrorCallback = function(message)
 		local popup = script.Parent:FindFirstChild("Popup")
 		showOneButton()
 		popup.PopupText.Text = message
 		local clickCon
 		clickCon = popup.OKButton.MouseButton1Click:connect(function()
+			game:GetService("TeleportService"):TeleportCancel()
 			if clickCon then clickCon:disconnect() end
 			game.GuiService:RemoveCenterDialog(script.Parent:FindFirstChild("Popup"))
 			popup:TweenSize(UDim2.new(0,0,0,0),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,1,true,makePopupInvisible())
@@ -214,3 +247,51 @@ if teleportEnabled then
 					
 	end
 end
+
+game:GetService("MarketplaceService").ClientLuaDialogRequested:connect(function(message, accept, decline)
+	local popup = script.Parent:FindFirstChild("Popup")
+	popup.PopupText.Text = message
+	popup.PopupImage.Image = ""
+		
+	local yesCon, noCon
+		
+	local function killCons()
+		if yesCon then yesCon:disconnect() end
+		if noCon then noCon:disconnect() end
+		game.GuiService:RemoveCenterDialog(script.Parent:FindFirstChild("Popup"))
+		popup:TweenSize(UDim2.new(0,0,0,0),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,1,true,makePopupInvisible())
+	end
+
+	yesCon = popup.AcceptButton.MouseButton1Click:connect(function()
+		killCons()
+		game:GetService("MarketplaceService"):SignalServerLuaDialogClosed(true);
+	end)
+
+	noCon = popup.DeclineButton.MouseButton1Click:connect(function()
+		killCons()
+		game:GetService("MarketplaceService"):SignalServerLuaDialogClosed(false);
+	end)
+
+	local centerDialogSuccess = pcall(function() game.GuiService:AddCenterDialog(script.Parent:FindFirstChild("Popup"), Enum.CenterDialogType.QuitDialog,
+		function()
+			showTwoButtons()
+			popup.AcceptButton.Text = accept
+			popup.DeclineButton.Text = decline
+			script.Parent:FindFirstChild("Popup").Visible = true 
+			popup:TweenSize(UDim2.new(0,330,0,350),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,1,true)
+		end,
+		function()
+			popup:TweenSize(UDim2.new(0,0,0,0),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,1,true,makePopupInvisible())
+		end)
+	end)
+					
+	if centerDialogSuccess == false then
+		script.Parent:FindFirstChild("Popup").Visible = true 
+		popup.AcceptButton.Text = accept
+		popup.DeclineButton.Text = decline
+		popup:TweenSize(UDim2.new(0,330,0,350),Enum.EasingDirection.Out,Enum.EasingStyle.Quart,1,true)
+	end
+		
+	return true
+					
+end)

@@ -1,8 +1,6 @@
---rbxsig%pUkiKR+DzOk6drJYjKO9tGKQfZCSbtrkZnZW9wjjKSVS4JGiv27ucij3/r7f/g0BUZJPhj48huzUqEfqY3JgwRCDuA3UFYjhfWSi2ywgNhNvbMksYCxw/YuYG0EZj8D2SnZqZCqoo39q0obEZz2R1EnZG7HLAKQ26aVZOFd9ZXE=%
+--rbxsig%ocvX0hbas5JBWsD6AHY6F+ulPYcgwqjMZUl4/jsj6jj1qQbPSOK6S1AU8a62bchtzcrgNsGtBIiXzXVQVslvaQD3BgStBT6M438XADFxAwh0lGVXwbkXIOEvhY/YUM2lnSOPZmFL2/rbAPnuyFFCYJXg+14mFKnYoxfEA8K5hBg=%
 --rbxassetid%48488235%
 
---new playerlist by Zach Lindblad (fusroblox)
---contact him for any revisions/issues
 --------------------  
 -- Super Util
 -------------------- 
@@ -38,8 +36,9 @@ local ADMINS =
 	dunbar1138 = 1,
 	echodown = 1,
 	ffjosh = 1,
+	effward = 1, 
+	mleask = 1,
 	foyle = 1,
-	fusroblox = 'http://www.roblox.com/asset/?id=99852703',
 	gemlocker = 1,
 	goddessnoob = 1,
 	gongfutiger = 1,
@@ -52,7 +51,8 @@ local ADMINS =
 	ibanez2189 = 1,
 	iltalumi = 1,
 	inventx = 1,
-	jeditkacheff = 1,
+	jackssmirkingrevenge = 1,
+	jeditkacheff = 'http://www.roblox.com/asset/?id=134032333',
 	kbux = 1,
 	keith = 1,
 	limon = 1,
@@ -61,7 +61,7 @@ local ADMINS =
 	majortom4321 = 1,
 	malcomso = 1,
 	maxvee = 1,
-	midwinterfires = 1,
+	midwinterfires = 1, 
 	mistersquirrel = 1,
 	morganic = 1,
 	motornerve = 1,
@@ -248,7 +248,7 @@ function MakePopupButton(nparent,ntext,index,last)
 		BackgroundTransparency = 1,
 		Position = UDim2.new(0,0,1*index,0),
 		Size = UDim2.new(1, 0, 1, 0),
-		ZIndex=9,
+		ZIndex=7,
 		Obj.Create'TextLabel'
 		{
 			Name = 'ButtonText',
@@ -262,7 +262,7 @@ function MakePopupButton(nparent,ntext,index,last)
 			TextScaled = true,
 			TextColor3 = Color3.new(1,1,1),
 			TextStrokeTransparency = 1,
-			ZIndex=9,
+			ZIndex=7,
 		},
 		Parent = nparent,
 	}
@@ -489,7 +489,7 @@ local PopUpClipFrame = Obj.Create"Frame"
 	Size = UDim2.new(0,150,0,800),
 	Parent = MainFrame,
 	ClipsDescendants = true,
-	ZIndex=9,
+	ZIndex=7,
 }
 local PopUpPanel = nil
 	local PopUpPanelTemplate = Obj.Create"Frame"
@@ -860,7 +860,7 @@ local NormalAbuseBox = Obj.Create'Frame'
 local BigButton=Instance.new('ImageButton')
 	BigButton.Size=UDim2.new(1,0,1,0)
 	BigButton.BackgroundTransparency=1
-	BigButton.ZIndex=10
+	BigButton.ZIndex=8
 	BigButton.Visible=false
 	--BigButton.Active=false
 	BigButton.Parent=ScreenGui
@@ -3040,4 +3040,5 @@ IsPersonalServer= not not game.Workspace:FindFirstChild("PSVariable")
 		end
 	end)
  end
+
 

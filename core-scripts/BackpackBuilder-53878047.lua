@@ -1,4 +1,4 @@
---rbxsig%ajqqTypn8cXmAlrdqhDKhItl413ndYEkpVdn/u7NGTmEyfwlhOJeSdZIZE+QLG/vRLkbVlp75MyPeWt7MR7K443uOfLnmRnXvj0XdhY0HQxdqVu9uRh1FvpjhLVWE3p9GRv2Vh99QxI/FUC0rDcT64cNueM8fjBp7QpFypJ1R+8=%
+--rbxsig%R6R6Cmm3cSxKE+sbChmrk4EKt7cmUt61rnYXSaA8P60EMd2AHDn2CXzdU81/DLqU2VQI1V1jt7A3U63/KQIAYQQpAOKhks1LGppiUxOZFw+LHvpXcubaqpKm03XuSsW8B4K0ldOImn600bsm4Sd82ydYZBmYh5+JdqYNfSSgshA=%
 --rbxassetid%53878047%
 -- This script creates almost all gui elements found in the backpack (warning: there are a lot!)
 -- TODO: automate this process
@@ -22,14 +22,14 @@ end
 local function IsTouchDevice()	
 	local touchEnabled = false
 	pcall(function() touchEnabled = Game:GetService('UserInputService').TouchEnabled end)
-	return touchEnabled 	
+	return touchEnabled 
 end 
 
-local function IsPhone()
-	if gui.AbsoluteSize.Y <= 320 then 
-		return true
-	end 
-	return false 
+local function IsPhone()	 	
+	if gui.AbsoluteSize.Y <= 320 then 	 	
+		return true	 	
+	end 	 	
+	return false 	 	
 end
 
 waitForChild(game,"Players")
@@ -80,12 +80,11 @@ BackpackButton.Parent = gui.ControlFrame
 
 local NumSlots = 9
 
-if IsPhone() then 
+if IsPhone() then
 	NumSlots = 3
-	CurrentLoadout.Size = UDim2.new(0, 180, 0, 54)
-	CurrentLoadout.Position = UDim2.new(0.5, -90, 1, -85)
+	CurrentLoadout.Size = UDim2.new(0,180,0,54)
+	CurrentLoadout.Position = UDim2.new(0.5,-90,1,-85)
 end
-
 
 for i = 0, NumSlots do	
 	local slotFrame = Instance.new("Frame")
@@ -123,7 +122,7 @@ TempSlot.Style = 'Custom'
 TempSlot.Visible = false
 TempSlot.RobloxLocked = true
 TempSlot.Parent = CurrentLoadout
-TempSlot.ZIndex = 4.0
+TempSlot.ZIndex = 3.0
 
 	local slotBackground = Instance.new('ImageLabel')
 	slotBackground.Name = 'Background'
@@ -403,6 +402,7 @@ Backpack.Active = true
 	Gear.RobloxLocked = true
 	Gear.BackgroundTransparency = 1
 	Gear.Size  = UDim2.new(1,0,1,0)
+	Gear.ClipsDescendants = true
 	Gear.Parent = Backpack
 
 		-- Gear Children

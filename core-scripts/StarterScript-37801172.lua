@@ -1,8 +1,10 @@
---rbxsig%kh9aoqlOhzkDlALB8CeEtjgULwo5/xCWmmYJ0Q2jK35MPS5jRyVBToX4v4sI1yjCz7ENHA+OzQZmQetR3pLj3KpRq6Vd5uiRS7kGe2DGp2P3ibz2fSyg2s4soPViqyGaefY1/oRXObPlu/kpTbMhWG/bXK0CYtR8ukz61kh9c54=%
+--rbxsig%Pq+gVYGYzZAOOYdfH6lCqtfgadGN3QHeasIjspju8CF541Gc2gN9pdNFoBKojio/UxvVV5XNnD7dM13Bd36tOU0rVxRdhQMheIGEDIK0vhIlJ3ZEh9nFyUnTuKcFPlwJnLM2MCSMBdIAnjjYBs4rYtiFLkuvTJS1uqkEFmIVpAs=%
 --rbxassetid%37801172%
 -- Creates all neccessary scripts for the gui on initial load, everything except build tools
 -- Created by Ben T. 10/29/10
 -- Please note that these are loaded in a specific order to diminish errors/perceived load time by user
+-- please use this responsibly, you guys aren't, and I see what you are doing
+
 local scriptContext = game:GetService("ScriptContext")
 local touchEnabled = false
 pcall(function() touchEnabled = game:GetService("UserInputService").TouchEnabled end)
@@ -62,7 +64,7 @@ else
 	end) 
 end 
 
-if game.CoreGui.Version >= 3 then
+if game.CoreGui.Version >= 3 and game.PlaceId ~= 130815926 then --todo: remove placeid hack for halloween
 	-- Backpack Builder, creates most of the backpack gui
 	scriptContext:AddCoreScript(53878047,screenGui,"CoreScripts/BackpackScripts/BackpackBuilder")
 

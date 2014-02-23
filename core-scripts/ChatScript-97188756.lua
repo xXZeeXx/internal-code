@@ -1,4 +1,4 @@
---rbxsig%AnAIUMbdEXYPKj7Bk74Ncnl94LKK4XB7S1IeDgqKVwTtvJO9dVzyaVCqo26mLsmjI9PTMN3OKr4Y005nKpjbzHCQXFNni5t/QkdbItceLe9pTpqIWME301sge/vWKg77CnTtvEbnCqIVAZIb+hQ8eUws9Yvi6vDBcmAjrHmHo5Q=%
+--rbxsig%oK0A7qsPYz1h4ACxMny+510+o7GvXsLejQ/12k8bcMP8wt66xpH8rC6xD3dm8Sd5Jx9hRE4HwIP21DrLmMgfl0hIBRAxSeOLVrv9Z0r1V/ECwVKaKphwS31qw1NKrJzmdQAT0+uIlcopexxgG0JsBxkFDhWuDLkEuFdoAbMBod0=%
 --rbxassetid%97188756%
 --[[
 	//FileName: ChatScript.LUA 
@@ -172,7 +172,7 @@ local Chat = {
 			Admins_List = {'Sorcus', 'Shedletsky', 'Telamon', 'Tarabyte', 'StickMasterLuke', 'OnlyTwentyCharacters', 'FusRoblox', 'SolarCrane', 
 								'HotThoth', 'JediTkacheff', 'Builderman', 'Brighteyes', 'ReeseMcblox', 'GemLocker', 'GongfuTiger', 'Erik.Cassel', 'Matt Dusek', 'Keith',
 								'Totbl', 'LordRugDump', 'David.Baszucki', 'Dbapostle', 'DaveYorkRBX', 'nJay', 'OstrichSized', 'TobotRobot', 'twberg', 'ROBLOX', 'RBAdam', 'Doughtless',
-								'Anaminus', 'Stravant', 'Cr3470r', 'CodeWriter', 'Games', 'AcesWayUpHigh', 'Phil'
+								'Anaminus', 'Stravant', 'Cr3470r', 'CodeWriter', 'Games', 'AcesWayUpHigh', 'Phil', 'effward', 'mleask'
 								},
 
 			SafeChat_List = {
@@ -1298,11 +1298,15 @@ function Chat:CoreGuiChanged(coreGuiType,enabled)
 	if coreGuiType == Enum.CoreGuiType.Chat or coreGuiType == Enum.CoreGuiType.All then
 		if self.Frame then self.Frame.Visible = enabled end
 
-		if not Chat:IsTouchDevice() and self.ChatBar then 
+		if Chat:IsTouchDevice() then
+			self.ChatTouchFrame.Visible = enabled
+		end
+
+		if self.ChatBar then
 			self.ChatBar.Visible = enabled 
-			if enabled then
+			if enabled and not Chat:IsTouchDevice() then
 				GuiService:SetGlobalGuiInset(0, 0, 0, 20)
-			else
+			elseif not Chat:IsTouchDevice() then
 				GuiService:SetGlobalGuiInset(0, 0, 0, 0)
 			end
 		end
