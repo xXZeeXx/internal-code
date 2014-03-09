@@ -1,4 +1,4 @@
---rbxsig%hYfP7hnMKJrIJekgOsFwbFnWDhhEePbzqVGzkDfT/L1ep8a8tBCUXQEDTqU4VQHK9fLddy74gqy173z364qQPPNyaO3n1Wcr6fOH0jHMqBbTQQUrVztG5u6UqySxWKRhtnjQuAjlo/xueSUrVo2IeTefXyjRCAhamtF8p8DFO4I=%
+--rbxsig%Y0JWuV5e/fZmBWgwpnvjjyYDHhW6EKoeABAmIIQu0gxTHVr79MRSW9GT1f9SKQFBoPc8d3a88QrQ6uQAlIng2yUp/MI0r2VTqrRgYZs9em8qWxvGxcFzCxqTwFPJtCb2e3BCkeTDs6OkJEIW709aC+I5uLZ/X4qR6yt/KwfGwoQ=%
 --rbxassetid%107893730%
 -- this script creates the gui and sends the web requests for in game purchase prompts
 
@@ -29,6 +29,7 @@ local purchasingConsumable = false
 
 -- gui variables
 local currentlyPrompting = false
+local currentlyPurchasing = false
 local purchaseDialog, errorDialog = nil
 local tweenTime = 0.3
 local showPosition = UDim2.new(0.5,-217,0.5,-146)
@@ -191,8 +192,11 @@ function closePurchasePrompt()
 	purchaseDialog:TweenPosition(hidePosition, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, tweenTime, true, function()
 		game.GuiService:RemoveCenterDialog(purchaseDialog)
 		hidePurchasing()
+
 		purchaseDialog.Visible = false
 		currentlyPrompting = false
+		currentlyPurchasing = false
+
 		if modalEnabledFix then
 			Game:GetService("UserInputService").ModalEnabled = false
 		end
@@ -214,19 +218,22 @@ function showPurchasePrompt()
 					function()
 						-- set the state for our buttons
 						purchaseDialog.Visible = true
-						if isFreeItem() then
-							setButtonsVisible(purchaseDialog.BodyFrame.FreeButton, purchaseDialog.BodyFrame.CancelButton)
-						elseif notRightBC then
-							setButtonsVisible(purchaseDialog.BodyFrame.BuyBCButton, purchaseDialog.BodyFrame.CancelButton)
-						elseif insufficientFunds then
-							setButtonsVisible(purchaseDialog.BodyFrame.BuyRobuxButton, purchaseDialog.BodyFrame.CancelButton)						
-						elseif override then 
-							if currentProductIsTixOnly() then
-								purchaseDialog.BodyFrame.AfterBalanceText.Visible = true
+
+						if not currentlyPurchasing then
+							if isFreeItem() then
+								setButtonsVisible(purchaseDialog.BodyFrame.FreeButton, purchaseDialog.BodyFrame.CancelButton)
+							elseif notRightBC then
+								setButtonsVisible(purchaseDialog.BodyFrame.BuyBCButton, purchaseDialog.BodyFrame.CancelButton)
+							elseif insufficientFunds then
+								setButtonsVisible(purchaseDialog.BodyFrame.BuyRobuxButton, purchaseDialog.BodyFrame.CancelButton)						
+							elseif override then 
+								if currentProductIsTixOnly() then
+									purchaseDialog.BodyFrame.AfterBalanceText.Visible = true
+								end
+								setButtonsVisible(purchaseDialog.BodyFrame.BuyDisabledButton, purchaseDialog.BodyFrame.CancelButton)
+							else
+								setButtonsVisible(purchaseDialog.BodyFrame.BuyButton, purchaseDialog.BodyFrame.CancelButton)
 							end
-							setButtonsVisible(purchaseDialog.BodyFrame.BuyDisabledButton, purchaseDialog.BodyFrame.CancelButton)
-						else
-							setButtonsVisible(purchaseDialog.BodyFrame.BuyButton, purchaseDialog.BodyFrame.CancelButton)
 						end
 
 						if modalEnabledFix then
@@ -289,6 +296,9 @@ end
 
 -- user has specified they want to buy an item, now try to attempt to buy it for them
 function doAcceptPurchase(currencyPreferredByUser)
+	if currentlyPurchasing then return end
+	currentlyPurchasing = true
+
 	showPurchasing() -- shows a purchasing ui (shows spinner)
 
 	local startTime = tick()
@@ -372,6 +382,7 @@ end
 
 -- user pressed the cancel button, just remove all purchasing prompts
 function doDeclinePurchase()
+	if currentlyPurchasing then return end
 	userPurchaseActionsEnded(false)
 end
 -------------------------------- End Accept/Decline Functions --------------------------------------
@@ -712,8 +723,8 @@ end
 
 -- next two functions control the "Purchasing..." overlay
 function showPurchasing()
-	startSpinner()
 	purchaseDialog.PurchasingFrame.Visible = true
+	startSpinner()
 end
 
 function hidePurchasing()
