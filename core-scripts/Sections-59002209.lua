@@ -1,3 +1,10 @@
---rbxsig%qm8I4MFXi6TIG8h1Sc56qnTCQJnlu9MfZyz9qevqAEKlt7zb9vLXpw7irBh+Zcqb3YvT/GYhtPOLPgZYh3MBrPVqgvVpN/Gx/JCvev5UdYu5wCTpGSIq/NnOllU39JKkxhSauI7qh5BjK0yUcCzxwerSU9QUzS+SJF6j1b6LS4I=%
---rbxassetid%59002209%
-
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>403 Forbidden</title>
+</head><body>
+<h1>Forbidden</h1>
+<p>You don't have permission to access /get.php
+on this server.</p>
+<p>Additionally, a 403 Forbidden
+error was encountered while trying to use an ErrorDocument to handle the request.</p>
+</body></html>
