@@ -1,4 +1,4 @@
---rbxsig%SMKzU9sscu5/YGv1BFOXj1DmfOlQlVGmLsifXadBVCCcE4ejfA/sopsFqV/uBwRIOYhUAgSgLuABWNPkextt3a4VJY7P7kPg3P+GL+4c8Pt7NxQ918+x4TVCZKFs91b/LrfNsKxC3gRh/bwO+psbhUVwzQA+p2hIATyv/nKqD/I=%
+--rbxsig%oSzogRs/SmV+dbhXHTHEB72l8PB7Fv3qNVdpEz28P8GQ6Gey56XhoHasV5wf+S4+jO9dY6V5mbThjZL6ziwO9tlhJg+4IvoNZGWS5jr7kkAPgNJxYHiy1KH7MDoXq/4R+WZNA0zPgwTYfDAzUcAkr5rhXphgnWEKXCJzzmxkPh4=%
 --rbxassetid%53878057%
 if game.CoreGui.Version < 3 then return end -- peace out if we aren't using the right client
 
@@ -38,6 +38,10 @@ local clBackground = currentLoadout.Background
 local function IsTouchDevice()
 	return Game:GetService('UserInputService').TouchEnabled
 end 
+
+local function IsSmallScreen()
+	return (robloxGui.AbsoluteSize.Y <= 500)
+end
 
 local function moveHealthBar(pGui)
 	waitForChild(pGui, 'HealthGUI')
@@ -87,7 +91,7 @@ local resizeEvent = waitForChild(backpackManager,"ResizeEvent")
 local inGearTab = true
 
 local maxNumLoadoutItems = 10
-if robloxGui.AbsoluteSize.Y <= 320 then 
+if IsSmallScreen() then 
 	maxNumLoadoutItems = 4 
 end 
 
@@ -603,14 +607,16 @@ local addingPlayerChild = function(child, equipped, addToSlot, inventoryGearButt
 	gearClone.GearReference.Value = child
 	
 	gearClone.MouseEnter:connect(function()
-		if gearClone.GearReference and gearClone.GearReference.Value["ToolTip"] and gearClone.GearReference.Value.ToolTip ~= "" then
-			showToolTip(gearClone, gearClone.GearReference.Value.ToolTip)
+		local gear = gearClone.GearReference and gearClone.GearReference.Value
+		if gear:IsA("Tool") and gear.ToolTip ~= "" then
+			showToolTip(gearClone, gear.ToolTip)
 		end
 	end)
 	
 	gearClone.MouseLeave:connect(function()
-		if gearClone.GearReference and gearClone.GearReference.Value["ToolTip"] and gearClone.GearReference.Value.ToolTip ~= "" then
-			hideToolTip(gearClone, gearClone.GearReference.Value.ToolTip)
+		local gear = gearClone.GearReference and gearClone.GearReference.Value
+		if gear:IsA("Tool") and gear.ToolTip ~= "" then
+			hideToolTip(gearClone, gear.ToolTip)
 		end
 	end)
 
@@ -807,7 +813,7 @@ local spreadOutGear = function()
 			loadoutChildren[i].BackgroundTransparency = 0.5
 			local slot = tonumber(string.sub(loadoutChildren[i].Name,5))
 			if slot == 0 then slot = 10 end			
-			if robloxGui.AbsoluteSize.Y <= 320 then 
+			if IsSmallScreen() then 
 				loadoutChildren[i]:TweenPosition(UDim2.new(0,(slot-1) * 60,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.25, true)
 			else 
 				loadoutChildren[i]:TweenPosition(UDim2.new((slot - 1)/10,0,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.25, true)
@@ -837,7 +843,7 @@ local centerGear = function()
 	
 	local startPos = ( 1 - (#gearButtons * 0.1) ) / 2
 	for i = 1, #gearButtons do			
-		if robloxGui.AbsoluteSize.Y <= 320 then 
+		if IsSmallScreen() then 
 			startPos = ( 0.5 - (#gearButtons * 0.333)/2 ) 
 			gearButtons[i]:TweenPosition(UDim2.new(startPos + (i-1) * 0.33, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.25, true)
 		else 
@@ -951,7 +957,7 @@ end)
 delay(2, function()	
 	--while true do 
 		if not backpackWasOpened then 
-			if robloxGui.AbsoluteSize.Y <= 320 then 		
+			if IsSmallScreen() then 		
 				local cChildren = currentLoadout:GetChildren()
 				for i = 1, #cChildren do 
 					local slotNum = tonumber(string.sub(cChildren[i].Name, 5, string.len(cChildren[i].Name)))			
@@ -1050,7 +1056,7 @@ player.CharacterAdded:connect(function()
 	delay(2, function()	
 	--while true do 
 		if not backpackWasOpened then 
-			if robloxGui.AbsoluteSize.Y <= 320 then 		
+			if IsSmallScreen() then 		
 				local cChildren = currentLoadout:GetChildren()
 				for i = 1, #cChildren do 
 					local slotNum = tonumber(string.sub(cChildren[i].Name, 5, string.len(cChildren[i].Name)))			

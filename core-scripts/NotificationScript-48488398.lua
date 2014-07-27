@@ -1,4 +1,4 @@
---rbxsig%k6ZG6Ah8SJ9wh6xln8/JHR7F26q0QSt+HM+XYvop9DR+6u66dHIHgY+Qxaj2chFCAaGNW/cXxZu38LBOUhlgKIIWuc/xuV5elEQyaFtyVTXRh2B3UfPbFrrOA+o5lrJ5JL82yh86j1guN+xA2aAPf03KWhemsLe8DfMkTvqejlU=%
+--rbxsig%VVSf71yoxh7ihblke7eQHc1eiZDWDgwGRlx9K0Cm/R87ZxQ4qVDPL6AAgcY3eDsVsDOQ6rJEjU6AA8yNfZUt5X21uI/18KTsisB4vHcf3vaEA0DTbKgF096vdKm+3SrfekwPZZLT1yLnB9YHy8CllsrAW8HaGyFQ3g5CixSsAvo=%
 --rbxassetid%48488398%
 function waitForProperty(instance, property)
 	while not instance[property] do
@@ -294,4 +294,15 @@ game:GetService("MarketplaceService").ClientLuaDialogRequested:connect(function(
 		
 	return true
 					
+end)
+
+Game:GetService("PointsService").PointsAwarded:connect( function(userId, pointsAwarded, userBalanceInGame, userTotalBalance)
+	if userId == Game.Players.LocalPlayer.userId then
+		game:GetService("GuiService"):SendNotification("Points Awarded!",
+			"You received " ..tostring(pointsAwarded) .. " points!",
+			"http://www.roblox.com/asset?id=155363793",
+			5,
+			function()
+			end)
+	end
 end)

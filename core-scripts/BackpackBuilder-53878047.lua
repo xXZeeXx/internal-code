@@ -1,4 +1,4 @@
---rbxsig%R6R6Cmm3cSxKE+sbChmrk4EKt7cmUt61rnYXSaA8P60EMd2AHDn2CXzdU81/DLqU2VQI1V1jt7A3U63/KQIAYQQpAOKhks1LGppiUxOZFw+LHvpXcubaqpKm03XuSsW8B4K0ldOImn600bsm4Sd82ydYZBmYh5+JdqYNfSSgshA=%
+--rbxsig%Qj9Yu7P94MM/Pq1l1aOhzg0gvITp3M2OwhMa8/fbeGntZzX6j3vYZ7RpxhoZF2KyGitdxjHZCpm9il54a1U8wCTrr50ZMqHGH6aMk96qPYO9BcNtdFSkLkwTxnzBeSMN3NKy+AzCJtLtPAhaeFiDxIzSTeEpkHU5UwJIUbFWIQY=%
 --rbxassetid%53878047%
 -- This script creates almost all gui elements found in the backpack (warning: there are a lot!)
 -- TODO: automate this process
@@ -20,13 +20,11 @@ local function waitForProperty(instance, property)
 end
 
 local function IsTouchDevice()	
-	local touchEnabled = false
-	pcall(function() touchEnabled = Game:GetService('UserInputService').TouchEnabled end)
-	return touchEnabled 
+	return Game:GetService('UserInputService').TouchEnabled
 end 
 
 local function IsPhone()	 	
-	if gui.AbsoluteSize.Y <= 320 then 	 	
+	if Game:GetService("GuiService"):GetScreenResolution().Y <= 500 then 	 	
 		return true	 	
 	end 	 	
 	return false 	 	
@@ -95,7 +93,7 @@ for i = 0, NumSlots do
 	slotFrame.Name = "Slot" .. tostring(i)
 	slotFrame.ZIndex = 4.0
 	if i == 0 then
-		slotFrame.Position = UDim2.new(0.9, 0, 0, 0)
+		slotFrame.Position = UDim2.new(0.9, 48, 0, 0)
 	else
 		slotFrame.Position = UDim2.new((i - 1) * 0.1, (i-1)* 6,0,0)
 	end	
@@ -106,7 +104,6 @@ for i = 0, NumSlots do
 
 	if gui.AbsoluteSize.Y <= 320 then 
 		slotFrame.Position = UDim2.new(0, (i-1)* 60, 0, -50)
-		print('Well got here', slotFrame, slotFrame.Position.X.Scale, slotFrame.Position.X.Offset)		
 	end 
 	if gui.AbsoluteSize.Y <= 320 and i == 0 then 
 		slotFrame:Destroy() 

@@ -1,4 +1,4 @@
---rbxsig%lk3y6R0BXY1zEMQ6t6KP7xVDGshz2ZywYEhSBZ6EJldvNYNEZH3KUQzlWW8Q/zp05LCAUQ7ppfaBiOwM1eYXjeFZfIRZrTdxMd/2ZQe1qmJFqOzAVhkNvyIOF/5o8fZnPiXPkHoJVt/kz0O9Iqcpvl9+yhp/hRxRErxKvOQNbbQ=%
+--rbxsig%N4MyY0OT2fSuj2jExgKz21E9c9kMyzILlJfQ4wVk6wpKLfdol7ngSigCw7ZAH2ZPGAWt089EmhF0S4grtN9qiBFlRNBWz37WRO/YWkozGf3CY9FoR8wGQcpcx3si8lvW5JECzGDGMrhJXyd8lvuZKEBPJScJDqn5S/jWaLxdFAQ=%
 --rbxassetid%37801172%
 -- Creates all neccessary scripts for the gui on initial load, everything except build tools
 -- Created by Ben T. 10/29/10
@@ -29,17 +29,21 @@ scriptContext:AddCoreScript(59002209, scriptContext, "CoreScripts/Sections")
 waitForChild(game:GetService("CoreGui"),"RobloxGui")
 local screenGui = game:GetService("CoreGui"):FindFirstChild("RobloxGui")
 
+-- SettingsScript 
+scriptContext:AddCoreScript(46295863,screenGui,"CoreScripts/Settings")
+
 if not touchEnabled then
 	-- ToolTipper  (creates tool tips for gui)
 	scriptContext:AddCoreScript(36868950,screenGui,"CoreScripts/ToolTip")
-	-- SettingsScript 
-	scriptContext:AddCoreScript(46295863,screenGui,"CoreScripts/Settings")
 else
 	scriptContext:AddCoreScript(153556783,screenGui,"CoreScripts/TouchControls")
 end
 
 -- MainBotChatScript
 scriptContext:AddCoreScript(39250920,screenGui,"CoreScripts/MainBotChatScript")
+
+-- Developer Console Script
+scriptContext:AddCoreScript(157877000,screenGui,"CoreScripts/DeveloperConsole")
 
 -- Popup Script
 scriptContext:AddCoreScript(48488451,screenGui,"CoreScripts/PopupScript")
@@ -55,12 +59,12 @@ scriptContext:AddCoreScript(153556822, screenGui, "CoreScripts/HealthScript")
 if not touchEnabled then 
 	-- New Player List
 	scriptContext:AddCoreScript(48488235,screenGui,"CoreScripts/PlayerListScript")
-elseif screenGui.AbsoluteSize.Y > 600 then 	
+elseif screenGui.AbsoluteSize.Y >= 500 then 	
 	-- New Player List
 	scriptContext:AddCoreScript(48488235,screenGui,"CoreScripts/PlayerListScript")
 else 
 	delay(5, function()
-		if screenGui.AbsoluteSize.Y >= 600 then 			
+		if screenGui.AbsoluteSize.Y >= 500 then 			
 			-- New Player List
 			scriptContext:AddCoreScript(48488235,screenGui,"CoreScripts/PlayerListScript")
 		end 
@@ -108,7 +112,4 @@ if touchEnabled then -- touch devices don't use same control frame
 	waitForChild(screenGui, 'ControlFrame')
 	waitForChild(screenGui.ControlFrame, 'BottomLeftControl')
 	screenGui.ControlFrame.BottomLeftControl.Visible = false
-
-	waitForChild(screenGui.ControlFrame, 'TopLeftControl')
-	screenGui.ControlFrame.TopLeftControl.Visible = false 
 end 

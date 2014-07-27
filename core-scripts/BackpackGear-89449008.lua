@@ -1,11 +1,10 @@
---rbxsig%Sesvh4lMu6sHLuZtQwHXsCAuO1zM70ONISGMrnQRXUYHjNM/HBqLCY5kzhvyizVY+vZOyu4Jb1hijAPSRCOOMVwuvKKdATY5cxPIe7REFWFQ8Ti2TvqMU0c66KJzBNjNbOPjIPtPTwe+WqyU+u2q+QIUlRfWfTLn24l9Gy25M84=%
+--rbxsig%LwWbjzUlHgnElkNYyWTRhs6uxcD17rmtenBVgSrJAVrj7VwfetxJCDugiFlXAxCTVkR7VmjVQnW1kRNtBkT1c02Fn2KRI76dNE2guMsNQdJIADmEX/mk6sDoo1grgsbzGH8LGy7RN1QMwA6MM2+EbkvYVjX4lW6hZm6PrTIz0iU=%
 --rbxassetid%89449008%
 -- A couple of necessary functions
 local function waitForChild(instance, name)
 	assert(instance)
 	assert(name)
 	while not instance:FindFirstChild(name) do
-		print('Waiting for ...', instance, name)
 		instance.ChildAdded:wait()
 	end
 	return instance:FindFirstChild(name)
@@ -19,9 +18,7 @@ local function waitForProperty(instance, property)
 end
 
 local function IsTouchDevice()
-	local touchEnabled = false
-	pcall(function() touchEnabled = Game:GetService('UserInputService').TouchEnabled end)
-	return touchEnabled 
+	return Game:GetService('UserInputService').TouchEnabled
 end 
 
 
@@ -847,10 +844,8 @@ for i = 1, #loadoutChildren do
 end
 ------------------------- End Lifelong Connections -----------------------
 
-pcall(function()
-	coreGuiChanged(Enum.CoreGuiType.Backpack, Game.StarterGui:GetCoreGuiEnabled(Enum.CoreGuiType.Backpack))
-	Game.StarterGui.CoreGuiChangedSignal:connect(coreGuiChanged)
-end)
+coreGuiChanged(Enum.CoreGuiType.Backpack, Game.StarterGui:GetCoreGuiEnabled(Enum.CoreGuiType.Backpack))
+Game.StarterGui.CoreGuiChangedSignal:connect(coreGuiChanged)
 
 resize()
 resizeGrid()
